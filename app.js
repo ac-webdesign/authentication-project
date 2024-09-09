@@ -7,7 +7,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
-const mongoURI = 'mongodb+srv://alekos_auth:alekos_auth@cluster0.e63ohlp.mongodb.net/auth-project?retryWrites=true&w=majority&appName=Cluster0'
+const mongoURI = process.env.MONGO
 const authRoutes = require('./routes/auth')
 const noteRoutes = require('./routes/notes')
 
