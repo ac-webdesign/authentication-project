@@ -8,7 +8,7 @@ body {
     justify-content: center;
     margin: 0;
     color: #333;
-    padding-top: 3rem;
+    padding-top: 10rem;
 }
 
 .auth-container {
@@ -236,8 +236,12 @@ a:hover {
 @media (max-width: 600px) {
     .notes-container, .add-note-container {
         padding: 1.5rem;
+        max-width: 360px;
     }
-
+    .add-note-container h1{
+        font-size: 1rem;
+        text-align: center;
+    }
     .new-note-link, .add-button {
         font-size: 14px;
     }
