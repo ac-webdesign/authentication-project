@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+    <div class="add-note-container">
+        <h1>Add a New Note</h1>
+
+        <form action="/new_note" method="POST" class="add-note-form">
+            <textarea name="content" placeholder="Write your note here..." required></textarea>
+            <button type="submit" class="add-button">Add Note</button>
+        </form>
+
+        <a href="/notes" class="back-link">Back to Notes</a>
+    </div>
+</body>
+</html>

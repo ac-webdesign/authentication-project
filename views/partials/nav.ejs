@@ -1,0 +1,6 @@
+    <h1>Authentication Project</h1>
+    <% if (typeof user !== 'undefined') { %>
+      <p>Welcome, <%= user.username %> | <a href="/logout">Logout</a></p>
+    <% } else { %>
+      <p><a href="/login">Login</a> | <a href="/signup">Sign Up</a></p>
+    <% } %>

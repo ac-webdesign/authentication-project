@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs')  %>
+<body>
+    <div class="notes-container">
+        <p class="welcome-message">
+            Welcome, <%= user ? user.username : 'Guest' %> 
+            | <a href="/logout" class="logout-link">Logout</a>
+        </p>
+
+        <a href="/notes/new" class="new-note-link">Add a New Note</a>
+
+        <ul class="notes-list">
+            <% notes.forEach(note => { %>
+                <li class="note-item" id="note-<%= note._id %>">
+                    <p class="note-content"><%= note.content %></p>
+                    <div class="delete-form">
+                        <button class="complete-button" data-note-id="<%= note._id %>">✅</button>
+                        <form action="/notes/delete/<%= note._id %>" method="POST">
+                            <button type="submit" class="delete-button" data-note-id="<%= note._id %>">❌</button>
+                        </form>
+                    </div>
+
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const completeButtons = document.querySelectorAll('.complete-button');
+            const deleteButtons = document.querySelectorAll('.delete-button');
+
+            completeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const noteId = button.getAttribute('data-note-id');
+                    const noteItem = document.getElementById(`note-${noteId}`);
+                    const noteContent = noteItem.querySelector('.note-content');
+                    
+                    if (noteContent.style.textDecoration === 'line-through') {
+                        noteContent.style.textDecoration = 'none';
+                    } else {
+                        noteContent.style.textDecoration = 'line-through';
+                    }
+                });
+            });
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const notesList = document.querySelector('.notes-list');
+                    notesList.addEventListener('DOMNodeRemoved', () => {
+                        const allNotes = document.querySelectorAll('.note-content');
+                        allNotes.forEach(note => {
+                            note.style.textDecoration = 'none';
+                        });
+                    }, { once: true });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

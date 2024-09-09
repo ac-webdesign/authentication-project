@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs')  %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+    <div class="auth-container">
+        <div class="form-box">
+            <h1>Signup</h1>
+
+            <!-- Show error if it exists -->
+            <% if (typeof error !== 'undefined') { %>
+                <div class="error-message">
+                    <p><%= error %></p>
+                </div>
+            <% } %>
+            
+            <form action="/signup" method="POST">
+                <input type="text" name="username" required id="username" placeholder="Username">
+                <input type="email" name="email" required id="email" placeholder="Email">
+                <input type="password" name="password" required id="password" placeholder="Password">
+                <button type="submit">Signup</button>
+            </form>
+            <p>Already have an account? <a href="/login">Login here</a>.</p>
+        </div>
+    </div>
+</body>
+</html>
